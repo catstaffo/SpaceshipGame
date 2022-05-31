@@ -29,26 +29,23 @@ public class Movement : MonoBehaviour
     {
         ProcessThrust();
         ProcessRotation();
+
+        // debug keys
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            Physics.IgnoreLayerCollision(0,0);
+        }
     }
 
     void ProcessThrust()
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            rb.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime);
-            if (!audioSource.isPlaying)
-            {
-                audioSource.PlayOneShot(thrust);
-            }
-            if (!mainJet.isPlaying)
-            {
-                mainJet.Play();
-            }
+            BeginThrust();
+        }
         else
         {
-        
             mainJet.Stop();
-        }
         }
     }
 
@@ -57,21 +54,52 @@ public class Movement : MonoBehaviour
         
         if (Input.GetKey(KeyCode.A))
         {
-            ApplyRotation(rotationSpeed);
-            leftThrust.Play();
+            RotateLeft();
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            ApplyRotation(-rotationSpeed);
-            rightThrust.Play();
+            RotateRight();
         }
     }
 
-    private void ApplyRotation(float rotationThisFrame)
+    void BeginThrust()
+    {
+        rb.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime);
+        if (!audioSource.isPlaying)
+        {
+            audioSource.PlayOneShot(thrust);
+        }
+        if (!mainJet.isPlaying)
+        {
+            mainJet.Play();
+        }
+    }
+
+    void RotateLeft()
+    {
+        ApplyRotation(rotationSpeed);
+        leftThrust.Play();
+    }
+
+    void RotateRight()
+    {
+        ApplyRotation(-rotationSpeed);
+        rightThrust.Play();
+    }
+
+    void ApplyRotation(float rotationThisFrame)
     {
 
         rb.freezeRotation = true; // freeze rot to manually rotate
         transform.Rotate(Vector3.forward * rotationThisFrame * Time.deltaTime);
         rb.freezeRotation = false;
+    }
+
+    void DebugKeys()
+    {
+    if(Input.GetKeyDown("C"))
+        {
+            Physics.IgnoreLayerCollision(0,5);
+        }
     }
 }

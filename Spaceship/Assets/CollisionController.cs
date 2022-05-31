@@ -12,7 +12,7 @@ public class CollisionController : MonoBehaviour
     [SerializeField] AudioClip success;
     [SerializeField] AudioClip failure;
 
-    // ParticleSystem rocketParticleSystem;
+    
     [SerializeField] ParticleSystem successParticles;
     [SerializeField] ParticleSystem crashParticles;
 
@@ -83,12 +83,18 @@ public class CollisionController : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        // rocketParticleSystem = GetComponent<ParticleSystem>();
+        
     }
+
+
 
     // Update is called once per frame
     void Update()
     {
-        
+        // debug keys
+          if(Input.GetKey(KeyCode.L))
+        {
+            LoadNewScene();
+        }
     }
 }
