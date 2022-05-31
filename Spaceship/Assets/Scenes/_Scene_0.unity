@@ -315,6 +315,8 @@ MonoBehaviour:
   loadDelay: 1
   success: {fileID: 0}
   failure: {fileID: 0}
+  successParticles: {fileID: 0}
+  crashParticles: {fileID: 0}
 --- !u!1001 &771482292444111934
 PrefabInstance:
   m_ObjectHideFlags: 0

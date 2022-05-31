@@ -12,6 +12,10 @@ public class CollisionController : MonoBehaviour
     [SerializeField] AudioClip success;
     [SerializeField] AudioClip failure;
 
+    // ParticleSystem rocketParticleSystem;
+    [SerializeField] ParticleSystem successParticles;
+    [SerializeField] ParticleSystem crashParticles;
+
     bool isTransitioning = false;
 
     void Awake()
@@ -49,14 +53,16 @@ public class CollisionController : MonoBehaviour
     }
 
     void StartCrashSequence()
-    {   audioSource.Stop();
+    {   crashParticles.Play();
+        audioSource.Stop();
         isTransitioning = true;
         GetComponent<Movement>().enabled = false;
         Invoke("ReloadScene", loadDelay);
     }
 
     void StartLandingSequence()
-    {   audioSource.Stop();
+    {   successParticles.Play();
+        audioSource.Stop();
         isTransitioning = true;
         GetComponent<Movement>().enabled = false;
         Invoke("LoadNewScene", loadDelay);
@@ -77,6 +83,7 @@ public class CollisionController : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        // rocketParticleSystem = GetComponent<ParticleSystem>();
     }
 
     // Update is called once per frame
