@@ -313,6 +313,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadDelay: 1
+  success: {fileID: 0}
+  failure: {fileID: 0}
 --- !u!1001 &771482292444111934
 PrefabInstance:
   m_ObjectHideFlags: 0

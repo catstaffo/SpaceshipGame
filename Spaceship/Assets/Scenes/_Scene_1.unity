@@ -218,6 +218,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadDelay: 1
+  success: {fileID: 0}
+  failure: {fileID: 0}
 --- !u!82 &253485250
 AudioSource:
   m_ObjectHideFlags: 0
@@ -514,7 +516,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 87518457569035981, guid: 0b9241ff9b033864695aec00276d1ceb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 47
+      value: 51
       objectReference: {fileID: 0}
     - target: {fileID: 87518457569035981, guid: 0b9241ff9b033864695aec00276d1ceb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -586,6 +588,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadDelay: 1
+  success: {fileID: 0}
+  failure: {fileID: 0}
 --- !u!81 &1418898547
 AudioListener:
   m_ObjectHideFlags: 0

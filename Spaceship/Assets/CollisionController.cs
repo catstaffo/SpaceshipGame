@@ -8,38 +8,56 @@ public class CollisionController : MonoBehaviour
     [SerializeField] float loadDelay = 1f;
     int currentSceneIndex;
 
+    AudioSource audioSource;
+    [SerializeField] AudioClip success;
+    [SerializeField] AudioClip failure;
+
+    bool isTransitioning = false;
+
     void Awake()
     {
+        
         currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
     } 
 
     void OnCollisionEnter(Collision other)
     {
-        switch (other.gameObject.tag)
+        if(!isTransitioning)
         {
-            case "Frend":
-                Debug.Log("Chill");
-                break;
-            case "Finish":
-                Debug.Log("Yo damn");
-                StartLandingSequence();
-                break;
-            default:
-                Debug.Log("Ya dun goofed");
-                StartCrashSequence();;
-                break;
+            switch (other.gameObject.tag)
+            {
+                case "Frend":
+                    Debug.Log("Chill");
+                    break;
+                case "Finish":
+                    Debug.Log("Yo damn");
+                    StartLandingSequence();
+                    audioSource.PlayOneShot(success);
+                    break;
+                default:
+                    Debug.Log("Ya dun goofed");
+                    StartCrashSequence();
+                    audioSource.PlayOneShot(failure);
+                    break;
 
+            }
+        }
+        else
+        {
+            return;
         }
     }
 
     void StartCrashSequence()
-    {
+    {   audioSource.Stop();
+        isTransitioning = true;
         GetComponent<Movement>().enabled = false;
         Invoke("ReloadScene", loadDelay);
     }
 
     void StartLandingSequence()
-    {
+    {   audioSource.Stop();
+        isTransitioning = true;
         GetComponent<Movement>().enabled = false;
         Invoke("LoadNewScene", loadDelay);
     }
@@ -58,7 +76,7 @@ public class CollisionController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
