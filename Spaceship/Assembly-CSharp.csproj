@@ -37,7 +37,9 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Movement.cs" />
+     <Compile Include="Assets\Oscillator.cs" />
      <Compile Include="Assets\CollisionController.cs" />
+     <Compile Include="Assets\QuitGame.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.28f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
